@@ -1,9 +1,88 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { toast, ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 
+
+// const Login = () => {
+//   const navigate = useNavigate();
+//   const [formData, setFormData] = useState({
+//     email: "",
+//     password: "",
+//     rememberMe: false,
+//   });
+
+//   useEffect(() => {
+//     // Check if the user is already authenticated
+//     const authToken = localStorage.getItem("authToken");
+//     if (authToken) {
+//       // User is logged in
+//       // You can perform additional actions here, such as fetching user data
+//       // or redirecting to a specific page
+//       fetchUserData();
+//     } else {
+//       // User is not logged in
+//       // You can perform actions specific to logged-out users
+//     }
+//   }, []);
+  
+//   const fetchUserData = async () => {
+//     try {
+//       // Fetch user data from the server
+//       const response = await axios.get("http://localhost:3001/auth/validate_token", {
+//         headers: {
+//           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+//         },
+//       });
+//       const userData = response.data;
+//       // Perform actions with user data, if needed
+//     } catch (error) {
+//       console.error("Error fetching user data:", error);
+//       // Handle error
+//     }
+//   };
+  
+
+//   const handleInputChange = (event) => {
+//     const { name, value, type, checked } = event.target;
+//     const inputValue = type === "checkbox" ? checked : value;
+//     setFormData({
+//       ...formData,
+//       [name]: inputValue,
+//     });
+//   };
+
+//   const handleSignIn = async () => {
+//     const { email, password, rememberMe } = formData;
+//     try {
+//       setFormData({ ...formData, loading: true });
+  
+//       const response = await axios.post("http://localhost:3001/auth/sign_in", {
+//         email,
+//         password,
+//       });
+  
+//       console.log("Login response:", response);
+  
+//       if (response.status === 200) {
+//         const authTokenHeader = response.headers["authorization"];
+//         if (authTokenHeader) {
+//           const authToken = authTokenHeader.split("Bearer ")[1];
+//           localStorage.setItem("authToken", authToken);
+//           console.log("Stored authToken:", authToken);
+//           // Redirect user to dashboard or perform any other necessary actions upon successful login
+//           const navigate = useNavigate(); // Import and use useNavigate hook
+//           navigate("/home");
+//         } else {
+//           throw new Error("Authorization token not found in response");
+//         }
+//       } else {
+//         throw new Error("Invalid response from server");
+//       }
+//     } catch (error) {
+//       // Error handling code...
+//     } finally {
+//       setFormData({ ...formData, loading: false });
+//     }
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -29,7 +108,7 @@ const Login = () => {
   const fetchUserData = async () => {
     try {
       // Fetch user data from the server
-      const response = await axios.get("http://localhost:3001/user_data", {
+      const response = await axios.get("http://localhost:3001/auth/validate_token", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
@@ -41,7 +120,6 @@ const Login = () => {
       // Handle error
     }
   };
-  
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -53,7 +131,7 @@ const Login = () => {
   };
 
   const handleSignIn = async () => {
-    const { email, password, rememberMe } = formData;
+    const { email, password } = formData;
     try {
       setFormData({ ...formData, loading: true });
   
@@ -69,6 +147,7 @@ const Login = () => {
         if (authTokenHeader) {
           const authToken = authTokenHeader.split("Bearer ")[1];
           localStorage.setItem("authToken", authToken);
+          localStorage.setItem("isLoggedIn", "true"); // Set isLoggedIn to true
           console.log("Stored authToken:", authToken);
           // Redirect user to dashboard or perform any other necessary actions upon successful login
           navigate("/home");
@@ -79,25 +158,12 @@ const Login = () => {
         throw new Error("Invalid response from server");
       }
     } catch (error) {
-      console.error("Error with login request:", error);
-      if (error.response) {
-        console.log("Error response:", error.response);
-        if (error.response.status === 401) {
-          // toast.error("Invalid email or password");
-        } else {
-          // toast.error("An unexpected error occurred. Please try again later.");
-        }
-      } else if (error.request) {
-        console.error("No response from server. Please check your internet connection.");
-        // toast.error("No response from server. Please check your internet connection.");
-      } else {
-        console.error("An unexpected error occurred. Please try again later.");
-        // toast.error("An unexpected error occurred. Please try again later.");
-      }
+      // Error handling code...
     } finally {
       setFormData({ ...formData, loading: false });
     }
   };
+  
   
 
   return (
