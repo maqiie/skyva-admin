@@ -913,7 +913,7 @@ const Home = () => {
           <div>
             <nav>
               <Link
-                to="/orders"
+                to="/analytics"
                 className="block py-2 px-4 text-sm hover:bg-gray-700 hover:text-white rounded transition duration-300"
               >
                 <span className="flex items-center">
@@ -954,7 +954,7 @@ const Home = () => {
                 </span>
               </Link>
               <Link
-                to="/notifications"
+                to="/orders"
                 className="block py-2 px-4 text-sm hover:bg-gray-700 hover:text-white rounded transition duration-300"
               >
                 <span className="flex items-center">
@@ -968,7 +968,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Notifications
+                  Orders
                 </span>
               </Link>
             </nav>
