@@ -6,6 +6,7 @@ import Login from './Components/Login';
 import ProductForm from './Components/CreateProduct';
 import Products from "./Components/Products";
 import Orders from "./Components/Orders";
+import User from "./Components/User";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
@@ -27,6 +28,7 @@ function App() {
         <Route path='/product' element={isLoggedIn ? <ProductForm /> : <Login onLogin={handleLogin} />} />
         <Route path="/products" element={<Products />} />
         <Route path="/orders" element={<Orders isLoggedIn={isLoggedIn} />} />
+        <Route path="/user" element={<User/>} />
       </Routes>
     </BrowserRouter>
   );
