@@ -7,7 +7,7 @@ import ProductForm from './Components/CreateProduct';
 import Products from "./Components/Products";
 import Orders from "./Components/Orders";
 import User from "./Components/User";
-import Analytics from "./Components/Analytics";
+// import Analytics from "./Components/Analytics";
 
 
 
@@ -32,7 +32,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/orders" element={<Orders isLoggedIn={isLoggedIn} />} />
         <Route path="/user" element={<User/>} />
-        <Route path="/analytics" element={<Analytics isLoggedIn={isLoggedIn} />} />
+        {/* <Route path="/analytics" element={<Analytics isLoggedIn={isLoggedIn} />} /> */}
       </Routes>
     </BrowserRouter>
   );

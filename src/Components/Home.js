@@ -691,6 +691,42 @@ const Home = () => {
     navigate("/");
   };
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const authToken = localStorage.getItem("authToken"); // Assuming you store the token in localStorage
+  //       const headers = { Authorization: `Bearer ${authToken}` };
+
+  //       const productsResponse = await axios.get(
+  //         "http://localhost:3001/products",
+  //         { headers }
+  //       );
+  //       setProductsCount(productsResponse.data.length);
+
+  //       const usersResponse = await axios.get(
+  //         "http://localhost:3001/auth/registrations",
+  //         { headers }
+  //       );
+  //       setUsersCount(usersResponse.data.length);
+
+  //       const ordersResponse = await axios.get("http://localhost:3001/orders", {
+  //         headers,
+  //       });
+  //       console.log("Orders response:", ordersResponse.data); // Add this console log
+  //       setOrdersCount(ordersResponse.data.length);
+
+  //       const completedOrdersResponse = await axios.get(
+  //         "http://localhost:3001/order_history",
+  //         { headers }
+  //       );
+  //       setCompletedOrdersCount(completedOrdersResponse.data.length);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -712,14 +748,13 @@ const Home = () => {
         const ordersResponse = await axios.get("http://localhost:3001/orders", {
           headers,
         });
-        console.log("Orders response:", ordersResponse.data); // Add this console log
         setOrdersCount(ordersResponse.data.length);
 
         const completedOrdersResponse = await axios.get(
-          "http://localhost:3001/orders/order_history",
+          "http://localhost:3001/order_history",
           { headers }
         );
-        setCompletedOrdersCount(completedOrdersResponse.data.length);
+        setCompletedOrdersCount(completedOrdersResponse.data.length); // Set completed orders count here
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -733,19 +768,28 @@ const Home = () => {
       try {
         const authToken = localStorage.getItem("authToken");
         const headers = { Authorization: `Bearer ${authToken}` };
-    
-        const revenueResponse = await axios.get("http://localhost:3001/orders/total_revenue", { headers });
+
+        const revenueResponse = await axios.get(
+          "http://localhost:3001/orders/total_revenue",
+          { headers }
+        );
         console.log("Revenue data:", revenueResponse.data);
-    
+
         const currentDate = new Date();
-        const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
-    
-        setRevenueData([{ month: currentMonth, amount: parseFloat(revenueResponse.data.total_revenue) }]);
+        const currentMonth = currentDate.toLocaleString("default", {
+          month: "long",
+        });
+
+        setRevenueData([
+          {
+            month: currentMonth,
+            amount: parseFloat(revenueResponse.data.total_revenue),
+          },
+        ]);
       } catch (error) {
         console.error("Error fetching revenue data:", error);
       }
     };
-    
 
     fetchRevenueData();
   }, []);
@@ -1026,11 +1070,12 @@ const Home = () => {
                 <span className="text-sm">+20% from last week</span>
               </div>
             </div>
+    
             <div className="bg-gray-100 rounded-lg shadow-md p-6 text-gray-900">
               <h2 className="text-lg font-semibold mb-4">Completed Orders</h2>
               <div className="flex items-center justify-between">
                 <span className="text-4xl font-bold">
-                  {completedOrdersCount}
+                  {completedOrdersCount} {/* Display completed orders count */}
                 </span>
                 <span className="text-sm">+25% from last week</span>
               </div>
