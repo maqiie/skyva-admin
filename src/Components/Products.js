@@ -288,11 +288,29 @@ import { Link } from "react-router-dom";
 const Products = () => {
   const [products, setProducts] = useState([]);
 
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await axios.get("http://localhost:3001/products");
+  //       setProducts(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+
+  //     }
+
+  //   };
+
+  //   fetchProducts();
+  // }, []);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get("http://localhost:3001/products");
         setProducts(response.data);
+
+        response.data.forEach((product) => {
+          console.log("Image URL for product:", product.image_url);
+        });
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -327,10 +345,14 @@ const Products = () => {
               className="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-lg"
             >
               <img
-                src={product.image}
+                src={`http://localhost:3001${product.image_url}`} // Ensure the full URL is included here
                 alt={product.name}
-                className="w-full h-48 object-cover"
+                className="h-80 w-72 object-cover rounded-t-xl"
+                onError={(e) => {
+                  console.error("Error loading image:", e);
+                }}
               />
+
               <div className="p-4">
                 <h3 className="text-xl font-semibold mb-2 text-gray-800">
                   {product.name}
@@ -340,9 +362,7 @@ const Products = () => {
                   <p className="text-gray-700 font-semibold">
                     Price: ${product.price}
                   </p>
-                  <p className="text-gray-700">
-                    Qty: {product.stock_quantity}
-                  </p>
+                  <p className="text-gray-700">Qty: {product.stock_quantity}</p>
                 </div>
                 <div className="flex justify-between items-center mb-2">
                   <p className="text-gray-700">Brand: {product.brand}</p>

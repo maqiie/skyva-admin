@@ -691,42 +691,7 @@ const Home = () => {
     navigate("/");
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const authToken = localStorage.getItem("authToken"); // Assuming you store the token in localStorage
-  //       const headers = { Authorization: `Bearer ${authToken}` };
-
-  //       const productsResponse = await axios.get(
-  //         "http://localhost:3001/products",
-  //         { headers }
-  //       );
-  //       setProductsCount(productsResponse.data.length);
-
-  //       const usersResponse = await axios.get(
-  //         "http://localhost:3001/auth/registrations",
-  //         { headers }
-  //       );
-  //       setUsersCount(usersResponse.data.length);
-
-  //       const ordersResponse = await axios.get("http://localhost:3001/orders", {
-  //         headers,
-  //       });
-  //       console.log("Orders response:", ordersResponse.data); // Add this console log
-  //       setOrdersCount(ordersResponse.data.length);
-
-  //       const completedOrdersResponse = await axios.get(
-  //         "http://localhost:3001/order_history",
-  //         { headers }
-  //       );
-  //       setCompletedOrdersCount(completedOrdersResponse.data.length);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
