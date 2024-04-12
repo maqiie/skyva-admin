@@ -26,24 +26,24 @@ const Home = () => {
         const headers = { Authorization: `Bearer ${authToken}` };
 
         const productsResponse = await axios.get(
-          "https://skyva-api.vercel.app/products",
+          "https://skyva-api-1.onrender.com/products",
           { headers }
         );
         setProductsCount(productsResponse.data.length);
 
         const usersResponse = await axios.get(
-          "https://skyva-api.vercel.app/auth/registrations",
+          "https://skyva-api-1.onrender.com/auth/registrations",
           { headers }
         );
         setUsersCount(usersResponse.data.length);
 
-        const ordersResponse = await axios.get("https://skyva-api.vercel.app/orders", {
+        const ordersResponse = await axios.get("https://skyva-api-1.onrender.com/orders", {
           headers,
         });
         setOrdersCount(ordersResponse.data.length);
 
         const completedOrdersResponse = await axios.get(
-          "https://skyva-api.vercel.app/order_history",
+          "https://skyva-api-1.onrender.com/order_history",
           { headers }
         );
         setCompletedOrdersCount(completedOrdersResponse.data.length); // Set completed orders count here
@@ -62,7 +62,7 @@ const Home = () => {
         const headers = { Authorization: `Bearer ${authToken}` };
 
         const revenueResponse = await axios.get(
-          "https://skyva-api.vercel.app/orders/total_revenue",
+          "https://skyva-api-1.onrender.com/orders/total_revenue",
           { headers }
         );
         console.log("Revenue data:", revenueResponse.data);

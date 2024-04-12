@@ -20,7 +20,7 @@
 
 //   fetchUsers = async () => {
 //     try {
-//       const response = await axios.get("https://skyva-api.vercel.app/auth/users");
+//       const response = await axios.get("https://skyva-api-1.onrender.com/auth/users");
 //       this.setState({ users: response.data, isLoading: false });
 //       console.log("Fetched users:", response.data); // Log the fetched data
 //     } catch (error) {
@@ -132,7 +132,7 @@
 
 //   fetchUsers = async () => {
 //     try {
-//       const response = await axios.get("https://skyva-api.vercel.app/auth/users");
+//       const response = await axios.get("https://skyva-api-1.onrender.com/auth/users");
 //       this.setState({ users: response.data, isLoading: false });
 //       console.log("Fetched users:", response.data); // Log the fetched data
 //     } catch (error) {
@@ -245,7 +245,7 @@
 
 //   fetchUsers = async () => {
 //     try {
-//       const response = await axios.get("https://skyva-api.vercel.app/auth/users");
+//       const response = await axios.get("https://skyva-api-1.onrender.com/auth/users");
 //       this.setState({ users: response.data, isLoading: false });
 //       console.log("Fetched users:", response.data); // Log the fetched data
 //     } catch (error) {
@@ -380,7 +380,7 @@ class User extends Component {
 
   fetchUsers = async () => {
     try {
-      const response = await axios.get("https://skyva-api.vercel.app/auth/users");
+      const response = await axios.get("https://skyva-api-1.onrender.com/auth/users");
       this.setState({ users: response.data, isLoading: false });
       console.log("Fetched users:", response.data); // Log the fetched data
     } catch (error) {

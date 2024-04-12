@@ -34,7 +34,7 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("https://skyva-api.vercel.app/categories");
+        const response = await axios.get("https://skyva-api-1.onrender.com/categories");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -76,7 +76,7 @@ const ProductForm = () => {
       }
 
       const response = await axios.post(
-        "https://skyva-api.vercel.app/products/create_product",
+        "https://skyva-api-1.onrender.com/products/create_product",
         productData,
         {
           headers: {
@@ -124,7 +124,7 @@ const ProductForm = () => {
       }
 
       const response = await axios.post(
-        "https://skyva-api.vercel.app/products/create_product",
+        "https://skyva-api-1.onrender.com/products/create_product",
         formDataToSend,
         {
           headers: {

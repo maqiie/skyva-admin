@@ -26,7 +26,7 @@ const Login = () => {
   const fetchUserData = async () => {
     try {
       // Fetch user data from the server
-      const response = await axios.get("https://skyva-api.vercel.app/auth/validate_token", {
+      const response = await axios.get("https://skyva-api-1.onrender.com/auth/validate_token", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
@@ -53,7 +53,7 @@ const Login = () => {
     try {
       setFormData({ ...formData, loading: true });
   
-      const response = await axios.post("https://skyva-api.vercel.app/auth/sign_in", {
+      const response = await axios.post("https://skyva-api-1.onrender.com/auth/sign_in", {
         email,
         password,
       });

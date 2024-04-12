@@ -10,7 +10,7 @@ const Orders = () => {
   const fetchOrders = async () => {
     try {
       const authToken = localStorage.getItem("authToken");
-      const response = await axios.get("https://skyva-api.vercel.app/orders", {
+      const response = await axios.get("https://skyva-api-1.onrender.com/orders", {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -40,7 +40,7 @@ const Orders = () => {
     try {
       const authToken = localStorage.getItem("authToken");
       await axios.put(
-        `https://skyva-api.vercel.app/orders/${orderId}/close`,
+        `https://skyva-api-1.onrender.com/orders/${orderId}/close`,
         {},
         {
           headers: {

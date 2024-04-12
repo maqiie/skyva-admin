@@ -10,7 +10,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("https://skyva-api.vercel.app/products");
+        const response = await axios.get("https://skyva-api-1.onrender.com/products");
         setProducts(response.data);
 
         response.data.forEach((product) => {
@@ -26,7 +26,7 @@ const Products = () => {
 
   const handleDeleteProduct = async (productId) => {
     try {
-      await axios.delete(`https://skyva-api.vercel.app/products/${productId}`);
+      await axios.delete(`https://skyva-api-1.onrender.com/products/${productId}`);
       // Remove the deleted product from the local state
       setProducts(products.filter((product) => product.id !== productId));
     } catch (error) {
@@ -50,7 +50,7 @@ const Products = () => {
               className="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-lg"
             >
               <img
-                src={`https://skyva-api.vercel.app${product.image_url}`} // Ensure the full URL is included here
+                src={`https://skyva-api-1.onrender.com${product.image_url}`} // Ensure the full URL is included here
                 alt={product.name}
                 className="h-80 w-72 object-cover rounded-t-xl"
                 onError={(e) => {
