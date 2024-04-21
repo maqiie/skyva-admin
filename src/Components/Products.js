@@ -1,16 +1,17 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
 
-  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("https://skyva-api-1.onrender.com/products");
+        const response = await axios.get(
+          "https://skyva-api-1.onrender.com/products"
+        );
         setProducts(response.data);
 
         response.data.forEach((product) => {
@@ -26,11 +27,24 @@ const Products = () => {
 
   const handleDeleteProduct = async (productId) => {
     try {
-      await axios.delete(`https://skyva-api-1.onrender.com/products/${productId}`);
+      await axios.delete(
+        `https://skyva-api-1.onrender.com/products/${productId}`
+      );
       // Remove the deleted product from the local state
       setProducts(products.filter((product) => product.id !== productId));
     } catch (error) {
       console.error("Error deleting product:", error);
+    }
+  };
+  const handleDeleteAllProducts = async () => {
+    try {
+      await axios.delete(
+        "https://skyva-api-1.onrender.com/products/destroy_all"
+      );
+      // Update the local state to an empty array since all products are deleted
+      setProducts([]);
+    } catch (error) {
+      console.error("Error deleting all products:", error);
     }
   };
 
@@ -42,6 +56,13 @@ const Products = () => {
         <Link to="/home" className="block mb-4 text-blue-600 hover:underline">
           &larr; Go back
         </Link>
+        <button
+  onClick={handleDeleteAllProducts}
+  className="flex items-center mb-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded focus:outline-none focus:bg-red-600 transition duration-300"
+>
+  <RiDeleteBin6Line className="mr-2" /> Delete All Products
+</button>
+
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {products.map((product) => (
